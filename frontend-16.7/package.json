@@ -1,0 +1,46 @@
+{
+  "name": "react-example-chat-app-frontend",
+  "version": "0.0.1",
+  "description": "Frontend for React Chat Example App (React 16.7)",
+  "license": "ISC",
+  "repository": "https://github.com/nilshartmann/react-chat-example",
+  "scripts": {
+    "start": "yarn devserver",
+    "clean": "rimraf -rf public/dist/",
+    "devserver": "webpack-dev-server --content-base public/",
+    "prettier": "prettier --write \"{src}/**/*\""
+  },
+  "dependencies": {
+    "react": "^16.7.0-alpha.0",
+    "react-cache": "^2.0.0-alpha.0",
+    "react-dom": "^16.7.0-alpha.0",
+    "socket.io": "^2.1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/plugin-transform-regenerator": "^7.0.0",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "css-loader": "^1.0.0",
+    "prettier": "^1.10.2",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.21.0",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-syntax-dynamic-import",
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-transform-regenerator"
+    ]
+  }
+}

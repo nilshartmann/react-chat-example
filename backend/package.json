@@ -1,0 +1,31 @@
+{
+  "name": "react-example-chat-app-server",
+  "version": "0.0.1",
+  "description": "Server for React Chat Example App",
+  "main": "index.ts",
+  "author": "Nils Hartmann",
+  "license": "MIT",
+  "repository": "https://github.com/nilshartmann/react-chat-example",
+  "scripts": {
+    "build": "tsc",
+    "compile:watch": "tsc --watch",
+    "start": "nodemon",
+    "clean": "rimraf dist/",
+    "prettier": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.4",
+    "@types/express": "^4.16.0",
+    "@types/socket.io": "^1.4.38",
+    "cors": "^2.8.4",
+    "express": "^4.16.4",
+    "socket.io": "^2.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.2",
+    "prettier": "^1.11.0",
+    "rimraf": "^2.6.2",
+    "ts-node": "^5.0.1",
+    "typescript": "^3.1.3"
+  }
+}
