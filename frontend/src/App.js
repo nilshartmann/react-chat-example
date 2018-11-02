@@ -20,33 +20,6 @@ function ThankYou({ reconnect }) {
   );
 }
 
-class ErrorPage extends React.Component {
-  state = {};
-
-  componentDidCatch(error, info) {
-    console.error("ERROR", error, info);
-    this.setState({
-      error,
-      info
-    });
-  }
-  render() {
-    const { children } = this.props;
-    const { error } = this.state;
-
-    if (error) {
-      return (
-        <div>
-          <h1>An error occured</h1>
-          <p>{error.toString()}</p>
-        </div>
-      );
-    }
-
-    return children;
-  }
-}
-
 function LoadingPage() {
   return (
     <Layout>
@@ -67,16 +40,14 @@ export default class App extends React.Component {
     const { chatPageVisible } = this.state;
 
     return (
-      <ErrorPage>
-        <React.Suspense fallback={<LoadingPage />}>
-          <ChatProvider>
-            <Layout>
-              {chatPageVisible && <ChatPage onExitChat={this.onExitChat} />}
-              {chatPageVisible || <ThankYou reconnect={this.onOpenChat} />}
-            </Layout>
-          </ChatProvider>
-        </React.Suspense>
-      </ErrorPage>
+      <React.Suspense fallback={<LoadingPage />}>
+        <ChatProvider>
+          <Layout>
+            {chatPageVisible && <ChatPage onExitChat={this.onExitChat} />}
+            {chatPageVisible || <ThankYou reconnect={this.onOpenChat} />}
+          </Layout>
+        </ChatProvider>
+      </React.Suspense>
     );
   }
 }

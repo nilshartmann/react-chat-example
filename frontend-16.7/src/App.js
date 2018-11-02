@@ -24,33 +24,6 @@ function ThankYou({ reconnect }) {
   );
 }
 
-class ErrorPage extends React.Component {
-  state = {};
-
-  componentDidCatch(error, info) {
-    console.error("ERROR", error, info);
-    this.setState({
-      error,
-      info
-    });
-  }
-  render() {
-    const { children } = this.props;
-    const { error } = this.state;
-
-    if (error) {
-      return (
-        <div>
-          <h1>An error occured</h1>
-          <p>{error.toString()}</p>
-        </div>
-      );
-    }
-
-    return children;
-  }
-}
-
 function LoadingPage() {
   return (
     <Layout>
@@ -68,23 +41,21 @@ export default function App() {
   const openDashboardWithSuspense = () => setVisiblePage("dashboardWithSuspense");
 
   return (
-    <ErrorPage>
-      <React.Suspense fallback={<LoadingPage />} maxDuration={100}>
-        <ChatProvider>
-          <Layout>
-            {visiblePage === "chat" && (
-              <ChatPage
-                onExitChat={exitChat}
-                openDashboardWithEffects={openDashboardWithEffects}
-                openDashboardWithSuspense={openDashboardWithSuspense}
-              />
-            )}
-            {visiblePage === "thankyou" && <ThankYou reconnect={openChat} />}
-            {visiblePage === "dashboardWithEffects" && <DashboardPageWithEffects onClose={openChat} />}
-            {visiblePage === "dashboardWithSuspense" && <DashboardPageWithSuspense onClose={openChat} />}
-          </Layout>
-        </ChatProvider>
-      </React.Suspense>
-    </ErrorPage>
+    <React.Suspense fallback={<LoadingPage />} maxDuration={100}>
+      <ChatProvider>
+        <Layout>
+          {visiblePage === "chat" && (
+            <ChatPage
+              onExitChat={exitChat}
+              openDashboardWithEffects={openDashboardWithEffects}
+              openDashboardWithSuspense={openDashboardWithSuspense}
+            />
+          )}
+          {visiblePage === "thankyou" && <ThankYou reconnect={openChat} />}
+          {visiblePage === "dashboardWithEffects" && <DashboardPageWithEffects onClose={openChat} />}
+          {visiblePage === "dashboardWithSuspense" && <DashboardPageWithSuspense onClose={openChat} />}
+        </Layout>
+      </ChatProvider>
+    </React.Suspense>
   );
 }
