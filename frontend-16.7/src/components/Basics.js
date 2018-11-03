@@ -1,7 +1,7 @@
 import React from "react";
 import { unstable_createResource } from "react-cache";
 
-import { demo_delayInvocationRandom } from "../demo-help";
+import { demo_delayRandomImgLoad } from "../demo-help";
 
 export function Box({ children, active }) {
   return <div className="Box">{active ? <b>{children}</b> : children}</div>;
@@ -22,7 +22,7 @@ export function AvatarPlaceholder() {
 const ImageResource = unstable_createResource(
   source =>
     new Promise(resolve =>
-      demo_delayInvocationRandom(() => {
+      demo_delayRandomImgLoad(() => {
         const img = new Image();
         img.src = source;
         img.onload = resolve;

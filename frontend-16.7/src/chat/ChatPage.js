@@ -24,21 +24,21 @@ const Message = React.memo(function Message({ message }) {
     <div className="Message Box">
       <React.Suspense fallback={<AvatarPlaceholder />}>
         <Avatar userId={message.user.id} />
-        <ChatContext.Consumer>
-          {({ user }) => {
-            const badge = user.id == message.user.id ? <Badge>You!</Badge> : null;
-            return (
-              <div>
-                <div style={{ display: "flex" }}>
-                  <h1>{message.user.name}</h1>
-                  {badge}
-                </div>
-                <p>{message.message || message.event}</p>
-              </div>
-            );
-          }}
-        </ChatContext.Consumer>
       </React.Suspense>
+      <ChatContext.Consumer>
+        {({ user }) => {
+          const badge = user.id == message.user.id ? <Badge>You!</Badge> : null;
+          return (
+            <div>
+              <div style={{ display: "flex" }}>
+                <h1>{message.user.name}</h1>
+                {badge}
+              </div>
+              <p>{message.message || message.event}</p>
+            </div>
+          );
+        }}
+      </ChatContext.Consumer>
     </div>
   );
 });
