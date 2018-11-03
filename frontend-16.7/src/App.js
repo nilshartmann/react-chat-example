@@ -32,13 +32,23 @@ function LoadingPage() {
   );
 }
 
-export default function App() {
-  const [visiblePage, setVisiblePage] = React.useState("chat");
+const initialPage = window.location.pathname === "/dashboard" ? "dashboardWithSuspense" : "chat";
 
-  const openChat = () => setVisiblePage("chat");
-  const exitChat = () => setVisiblePage("thankyou");
-  const openDashboardWithEffects = () => setVisiblePage("dashboardWithEffects");
-  const openDashboardWithSuspense = () => setVisiblePage("dashboardWithSuspense");
+export default function App() {
+  const [visiblePage, setVisiblePage] = React.useState(initialPage);
+
+  function openChat() {
+    setVisiblePage("chat");
+  }
+  function exitChat() {
+    setVisiblePage("thankyou");
+  }
+  function openDashboardWithEffects() {
+    setVisiblePage("dashboardWithEffects");
+  }
+  function openDashboardWithSuspense() {
+    setVisiblePage("dashboardWithSuspense");
+  }
 
   return (
     <React.Suspense fallback={<LoadingPage />} maxDuration={100}>
