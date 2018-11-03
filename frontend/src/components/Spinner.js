@@ -1,7 +1,6 @@
 import React from "react";
 
 export function Spinner({ label }) {
-  console.log("SPINNER");
   return (
     <div className="Spinner">
       {label && <h1>{label}</h1>}
