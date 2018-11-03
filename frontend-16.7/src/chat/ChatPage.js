@@ -4,6 +4,10 @@ import { Main, Sidebar, Tabs, Box, Avatar } from "../components";
 import { ChatContext } from "../ChatContext";
 import { AvatarPlaceholder } from "../components/Basics";
 
+function Badge({ children }) {
+  return <span className="Badge">{children}</span>;
+}
+
 // React 16.6 https://reactjs.org/docs/react-api.html#reactmemo
 const Message = React.memo(function Message({ message }) {
   if (!message.user.loggedIn) {
@@ -20,11 +24,21 @@ const Message = React.memo(function Message({ message }) {
     <div className="Message Box">
       <React.Suspense fallback={<AvatarPlaceholder />}>
         <Avatar userId={message.user.id} />
+        <ChatContext.Consumer>
+          {({ user }) => {
+            const badge = user.id == message.user.id ? <Badge>You!</Badge> : null;
+            return (
+              <div>
+                <div style={{ display: "flex" }}>
+                  <h1>{message.user.name}</h1>
+                  {badge}
+                </div>
+                <p>{message.message || message.event}</p>
+              </div>
+            );
+          }}
+        </ChatContext.Consumer>
       </React.Suspense>
-      <div>
-        <h1>{message.user.name}</h1>
-        <p>{message.message || message.event}</p>
-      </div>
     </div>
   );
 });

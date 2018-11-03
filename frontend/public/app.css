@@ -132,6 +132,21 @@ input:hover {
   background-color: #fdfaf4;
 }
 
+.Badge {
+  font-family: roboto;
+  font-style: normal;
+  font-size: 75%;
+  text-decoration: none;
+  background-color: #f0cc8f;
+  border-radius: 2px;
+  padding: 2px 4px;
+  border: 0;
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  height: 50%;
+}
+
 /* --------------------------------------------------------------------------------------------------------- */
 /*   Spinner                                                                                                 */
 /* --------------------------------------------------------------------------------------------------------- */
