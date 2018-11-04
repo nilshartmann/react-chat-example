@@ -18,9 +18,7 @@ function shouldDelayForImg() {
 }
 
 export const demo_delayRandomImgLoad = cb =>
-  console.log("shouldDelayForImg", shouldDelayForImg()) || shouldDelayForImg()
-    ? new Promise(resolve => setTimeout(() => resolve(cb()), (Math.floor(Math.random() * 4) + 2) * 500))
-    : cb();
+  shouldDelayForImg() ? new Promise(resolve => setTimeout(() => resolve(cb()), (Math.floor(Math.random() * 4) + 2) * 500)) : cb();
 
 export const demo_delayInvocation = (cb, timeoutInMs = 1500) =>
   shouldDelayForDemo() ? new Promise(resolve => setTimeout(() => resolve(cb()), timeoutInMs)) : cb();
