@@ -5,14 +5,6 @@ import { useFormInput } from "./hooks";
 export function LoginDialog({ onLogin, onCancel, error }) {
   const usernameFormInput = useFormInput("", onLogin);
 
-  // function onUsernameKeyPress(e) {
-  //   // https://stackoverflow.com/a/43845165/6134498
-  //   const keyCode = e.which || e.keyCode;
-  //   if (keyCode === 13) {
-  //     onLoginClick();
-  //   }
-  // }
-
   function onLoginClick() {
     onLogin(usernameFormInput.value);
   }
