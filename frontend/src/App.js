@@ -9,6 +9,10 @@ const ChatPage = shouldDelayForDemo()
   ? React.lazy(() => delayInvocation(() => import(/* webpackChunkName: "ChatPage" */ "./chat/ChatPage")))
   : React.lazy(() => import(/* webpackChunkName: "ChatPage" */ "./chat/ChatPage"));
 
+const DashboardPage = shouldDelayForDemo()
+  ? React.lazy(() => delayInvocation(() => import(/* webpackChunkName: "DashboardPage" */ "./stats/DashboardPage")))
+  : React.lazy(() => import(/* webpackChunkName: "DashboardPage" */ "./stats/DashboardPage"));
+
 function ThankYou({ reconnect }) {
   return (
     <div>
@@ -23,28 +27,39 @@ function ThankYou({ reconnect }) {
 function LoadingPage() {
   return (
     <Layout>
-      <Spinner label="Chat is loading" />
+      <Spinner label="Page is loading" />
     </Layout>
   );
 }
 
+const initialPage = window.location.pathname === "/dashboard" ? "dashboard" : "chat";
+const pushLocation = newPath => window.history.pushState({}, null, `${newPath}${window.location.search}`);
+
 export default class App extends React.Component {
   state = {
-    chatPageVisible: true
+    visiblePage: initialPage
   };
 
-  onOpenChat = () => this.setState({ chatPageVisible: true });
-  onExitChat = () => this.setState({ chatPageVisible: false });
+  onOpenChat = () => {
+    pushLocation("/chat");
+    this.setState({ visiblePage: "chat" });
+  };
+  onExitChat = () => this.setState({ visiblePage: "thankyou" });
+  onOpenDashboard = () => {
+    pushLocation("/dashboard");
+    this.setState({ visiblePage: "dashboard" });
+  };
 
   render() {
-    const { chatPageVisible } = this.state;
+    const { visiblePage } = this.state;
 
     return (
       <React.Suspense fallback={<LoadingPage />}>
         <ChatProvider>
           <Layout>
-            {chatPageVisible && <ChatPage onExitChat={this.onExitChat} />}
-            {chatPageVisible || <ThankYou reconnect={this.onOpenChat} />}
+            {visiblePage === "chat" && <ChatPage onExitChat={this.onExitChat} openDashboard={this.onOpenDashboard} />}
+            {visiblePage === "thankyou" && <ThankYou reconnect={this.onOpenChat} />}
+            {visiblePage === "dashboard" && <DashboardPage reconnect={this.onOpenChat} />}
           </Layout>
         </ChatProvider>
       </React.Suspense>

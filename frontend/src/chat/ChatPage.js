@@ -193,7 +193,7 @@ export default class ChatPage extends React.Component {
   static contextType = ChatContext;
 
   render() {
-    const { onExitChat } = this.props;
+    const { onExitChat, openDashboard } = this.props;
     const { user, chatrooms, openLoginDialog } = this.context;
 
     if (!user) {
@@ -219,6 +219,10 @@ export default class ChatPage extends React.Component {
             <UserProfile user={user} openLoginDialog={openLoginDialog} />
           </div>
           <div>
+            <button style={{ width: "100%" }} onClick={openDashboard}>
+              Dashboard
+            </button>
+
             <button style={{ width: "100%" }} onClick={onExitChat}>
               Exit
             </button>

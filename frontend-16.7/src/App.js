@@ -33,20 +33,24 @@ function LoadingPage() {
 }
 
 const initialPage = window.location.pathname === "/dashboard" ? "dashboardWithSuspense" : "chat";
+const pushLocation = newPath => window.history.pushState({}, null, `${newPath}${window.location.search}`);
 
 export default function App() {
   const [visiblePage, setVisiblePage] = React.useState(initialPage);
 
   function openChat() {
+    pushLocation("/chat");
     setVisiblePage("chat");
   }
   function exitChat() {
+    pushLocation("/thankyou");
     setVisiblePage("thankyou");
   }
   function openDashboardWithEffects() {
     setVisiblePage("dashboardWithEffects");
   }
   function openDashboardWithSuspense() {
+    pushLocation("/dashboard");
     setVisiblePage("dashboardWithSuspense");
   }
 
