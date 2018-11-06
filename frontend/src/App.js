@@ -59,7 +59,7 @@ export default class App extends React.Component {
           <Layout>
             {visiblePage === "chat" && <ChatPage onExitChat={this.onExitChat} openDashboard={this.onOpenDashboard} />}
             {visiblePage === "thankyou" && <ThankYou reconnect={this.onOpenChat} />}
-            {visiblePage === "dashboard" && <DashboardPage reconnect={this.onOpenChat} />}
+            {visiblePage === "dashboard" && <DashboardPage reconnect={this.onOpenChat} onClose={this.onOpenChat} />}
           </Layout>
         </ChatProvider>
       </React.Suspense>
