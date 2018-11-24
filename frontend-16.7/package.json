@@ -11,9 +11,9 @@
     "prettier": "prettier --write \"{src}/**/*\""
   },
   "dependencies": {
-    "react": "^16.7.0-alpha.0",
-    "react-cache": "^2.0.0-alpha.0",
-    "react-dom": "^16.7.0-alpha.0",
+    "react": "^16.7.0-alpha.2",
+    "react-cache": "2.0.0-alpha.1",
+    "react-dom": "^16.7.0-alpha.2",
     "socket.io": "^2.1.1"
   },
   "devDependencies": {
