@@ -17,19 +17,36 @@
   --color-text: white;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   color: var(--color-text);
   font-family: var(--font-one), sans-serif;
   background-color: #f2f2f2;
+  height: 100%;
+}
+
+#appContainer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow: auto;
+  margin: 1rem auto 1rem auto;
 }
 
 #mount {
+  margin: 0 auto;
+  /* box-shadow: 5px 5px 8px 0 rgba(208, 208, 208, 1); */
   width: 1024px;
   max-width: 1024px;
-  margin: 1rem auto 0 auto;
-  /* box-shadow: 5px 5px 8px 0 rgba(208, 208, 208, 1); */
-
+  height: 100%;
   background-color: var(--color-two);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
 header {
@@ -262,7 +279,7 @@ input:hover {
   align-items: flex-end; */
 
   overflow-y: scroll;
-  height: calc(100vh - 24rem);
+  height: calc(100vh - 23rem);
 
   padding-right: 1rem;
 }

@@ -42,6 +42,7 @@ function join(chatRoomId, onJoinedCallback, onChatEventReceivedCallback) {
       console.error("could not join chatroom: ", err);
     }
 
+    // setTimeout(() => onJoinedCallback(chatEventHistory), 1000);
     onJoinedCallback(chatEventHistory);
 
     socket.on("chatevent", onChatEventReceivedCallback);
