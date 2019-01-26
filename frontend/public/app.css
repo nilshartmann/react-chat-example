@@ -380,6 +380,7 @@ input:hover {
 }
 
 .Modal {
+  z-index: 10;
   position: fixed;
   left: 0;
   top: 0;
