@@ -23,5 +23,10 @@ export const demo_delayRandomImgLoad = cb =>
 export const demo_delayInvocation = (cb, timeoutInMs = 1500) =>
   shouldDelayForDemo() ? new Promise(resolve => setTimeout(() => resolve(cb()), timeoutInMs)) : cb();
 
-export const demo_delayFetch = (cb, timeoutInMs = 1500) =>
-  shouldDelayForFetch() ? new Promise(resolve => setTimeout(() => resolve(cb()), timeoutInMs)) : cb();
+// export const demo_delayFetch = (cb, timeoutInMs = 1500) =>
+//   shouldDelayForFetch() ? new Promise(resolve => setTimeout(() => resolve(cb()), timeoutInMs)) : cb();
+
+export const demo_delayFetch = (cb, timeoutInMs = 125) =>
+  shouldDelayForFetch()
+    ? new Promise(resolve => setTimeout(() => resolve(cb()), (Math.floor(Math.random() * 4) + 2) * timeoutInMs))
+    : cb();

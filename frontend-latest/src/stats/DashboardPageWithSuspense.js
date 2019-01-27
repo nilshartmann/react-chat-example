@@ -11,8 +11,8 @@ async function loadDataFromApi(path) {
   return json;
 }
 
-const LogsResource = unstable_createResource(() => demo_delayFetch(() => loadDataFromApi("/logs"), 2000));
-const UsersResource = unstable_createResource(() => demo_delayFetch(() => loadDataFromApi("/users"), 1000));
+const LogsResource = unstable_createResource(() => demo_delayFetch(() => loadDataFromApi("/logs"), 350));
+const UsersResource = unstable_createResource(() => demo_delayFetch(() => loadDataFromApi("/users"), 350));
 
 function Logs() {
   const logs = LogsResource.read();
