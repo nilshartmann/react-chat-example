@@ -5,7 +5,7 @@ Example application to show (new) React features:
 - Code splitting with suspense and [React.lazy](https://reactjs.org/docs/code-splitting.html#reactlazy)
 - Pure functional components with [React.memo](https://reactjs.org/docs/react-api.html#reactmemo)
 
-The following features from React 16.7 all are **experimental** and considered to be unstable! APIs might change, so be careful and make sure you checkout the latest React Docs etc for up-to-date informations.
+The following features from React 16.x all are **experimental** and considered to be unstable! APIs might change, so be careful and make sure you checkout the latest React Docs etc for up-to-date informations.
 
 - [Hooks API](https://reactjs.org/docs/hooks-intro.html)
 - Concurrent Mode
@@ -17,7 +17,7 @@ The application uses socket.io for the server communication.
 
 # Run the example
 
-The example consists of a backend and two frontends. There is one frontend that only uses stable React features (16.6) and one frontend that also uses unstable, experimental features from the upcoming 16.7+ React releases. Both frontends are more or less "feature identical" but using different React APIs.
+The example consists of a backend and two frontends. There is one frontend that only uses stable React features (currently 16.7) and one frontend that also uses unstable, experimental features from the upcoming 16.8+ React releases. Both frontends are more or less "feature identical" but using different React APIs.
 
 ## Start the backend
 
@@ -29,7 +29,7 @@ yarn
 yarn start
 ```
 
-## Start the 1. frontend (React 16.6)
+## Start the 1. frontend (React 16.7)
 
 This frontend will listen on port 9080, so please make sure, this port is not in use.
 
@@ -44,7 +44,7 @@ yarn start
 This frontend runs on port 9081, so please make sure this port is not in use.
 
 ```
-cd frontend-16.7
+cd frontend-latest
 yarn
 yarn start
 ```
