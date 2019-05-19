@@ -1,0 +1,50 @@
+{
+  "_from": "file:react-cache-2.0.0-alpha.0.tgz",
+  "_id": "react-cache@2.0.0-alpha.0",
+  "_inBundle": false,
+  "_integrity": "sha512-ScdstOUOM8udfcb3ro4Za8ElS4v2hDksAtFwZUBVxYTMT2tzsOZa61/L2blqTvTMLgJognxfwwqWmWde+CKJbw==",
+  "_location": "/react-cache",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "file",
+    "where": "/Users/nils/develop/javascript/react-hook-and-suspense/frontend",
+    "raw": "react-cache-2.0.0-alpha.0.tgz",
+    "rawSpec": "react-cache-2.0.0-alpha.0.tgz",
+    "saveSpec": "file:react-cache-2.0.0-alpha.0.tgz",
+    "fetchSpec": "/Users/nils/develop/javascript/react-hook-and-suspense/frontend/react-cache-2.0.0-alpha.0.tgz"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "/Users/nils/develop/javascript/react-hook-and-suspense/frontend/react-cache-2.0.0-alpha.0.tgz",
+  "_shasum": "5e5c379e234a86731b0a4ac849be428cf576c86d",
+  "_spec": "react-cache-2.0.0-alpha.0.tgz",
+  "_where": "/Users/nils/develop/javascript/react-hook-and-suspense/frontend",
+  "bugs": {
+    "url": "https://github.com/facebook/react/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "A basic cache for React applications",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "build-info.json",
+    "index.js",
+    "cjs/",
+    "umd/"
+  ],
+  "homepage": "https://github.com/facebook/react#readme",
+  "name": "react-cache",
+  "peerDependencies": {
+    "react": "^16.3.0-alpha.1"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/facebook/react.git",
+    "directory": "packages/react-cache"
+  },
+  "version": "2.0.0-alpha.0"
+}
