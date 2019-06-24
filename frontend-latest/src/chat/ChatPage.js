@@ -3,6 +3,7 @@ import * as ChatApi from "../ChatApi";
 import { Main, Sidebar, Tabs, Box, Avatar } from "../components";
 import { ChatContext } from "../ChatContext";
 import { AvatarPlaceholder } from "../components/Basics";
+import AddMessage from "./AddMessage";
 
 function Badge({ children }) {
   return <span className="Badge">{children}</span>;
@@ -42,44 +43,6 @@ const Message = React.memo(function Message({ message }) {
     </div>
   );
 });
-
-function AddMessage({ onMsgSend, userId }) {
-  const [msg, setMsg] = React.useState("");
-
-  const onMsgChange = e => setMsg(e.target.value); // <== replaces setState({...})
-
-  const onMsgKeyPress = e => {
-    // https://stackoverflow.com/a/43845165/6134498
-    const keyCode = e.which || e.keyCode;
-    if (keyCode === 13) {
-      onMsgSendClick();
-    }
-  };
-
-  const onMsgSendClick = () => {
-    if (msg.trim().length > 0) {
-      onMsgSend(msg);
-      setMsg(""); // <== replaces setState({msg: ""})
-    }
-  };
-
-  const btnDisabled = msg.trim().length === 0;
-
-  return (
-    <div className="AddMessage">
-      <Avatar userId={userId} />
-      <div className="Form">
-        <label htmlFor="AddMessageInput">Add Message</label>
-        <div className="InputWithButton">
-          <input type="text" value={msg} onKeyPress={onMsgKeyPress} onChange={onMsgChange} />
-          <button disabled={btnDisabled} onClick={onMsgSendClick}>
-            Send
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function ChatroomPanel({ chatroomId }) {
   const [chatHistory, setChatHistory] = React.useState();
