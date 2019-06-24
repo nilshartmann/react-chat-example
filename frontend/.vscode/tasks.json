@@ -4,10 +4,13 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "FRONTEND - Start",
+      "label": "FRONTEND",
       "type": "npm",
       "script": "start",
-      "problemMatcher": []
+      "problemMatcher": [],
+      "presentation": {
+        "group": "apps"
+      }
     }
   ]
 }

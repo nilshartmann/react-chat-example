@@ -1,0 +1,43 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+      {
+        "label": "BACKEND",
+        "type": "npm",
+        "script": "start",
+        "path": "backend/",
+        "problemMatcher": [],
+        "presentation": {
+          "group": "apps"
+        }
+      },
+      {
+        "label": "FRONTEND",
+        "type": "npm",
+        "script": "start",
+        "path": "frontend/",
+        "problemMatcher": [],
+        "presentation": {
+          "group": "apps"
+        }
+      }
+      ,
+      {
+        "label": "FRONTEND-LATEST",
+        "type": "npm",
+        "script": "start",
+        "path": "frontend-latest/",
+        "problemMatcher": [],
+        "presentation": {
+          "group": "apps"
+        }
+      },
+      {
+        "label": "ALL",
+        "dependsOn": ["BACKEND", "FRONTEND","FRONTEND-LATEST"],
+        "problemMatcher": []
+      }
+  ]
+}
