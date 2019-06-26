@@ -63,10 +63,10 @@ export default function DashboardPageWithEffects({ onClose }) {
       <Main>
         <h1>Admin Dashboard</h1>
         {/* Show spinners individually */}
-        <React.Suspense maxDuration={150} fallback={<Spinner label="Loading Logs..." />}>
+        <React.Suspense fallback={<Spinner label="Loading Logs..." />}>
           <Logs />
         </React.Suspense>
-        <React.Suspense maxDuration={150} fallback={<Spinner label="Loading User..." />}>
+        <React.Suspense fallback={<Spinner label="Loading User..." />}>
           <Users />
         </React.Suspense>
       </Main>

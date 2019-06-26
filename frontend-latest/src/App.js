@@ -55,7 +55,7 @@ export default function App() {
   }
 
   return (
-    <React.Suspense fallback={<LoadingPage />} maxDuration={100}>
+    <React.Suspense fallback={<LoadingPage />}>
       <ChatProvider>
         <Layout>
           {visiblePage === "chat" && (
