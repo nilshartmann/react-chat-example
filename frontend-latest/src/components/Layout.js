@@ -8,7 +8,7 @@ function Header() {
   return (
     <header>
       <h1>React Chat Example</h1>
-      <div>React {React.version}</div>
+      <div>React {React.version} (with Hooks and more)</div>
     </header>
   );
 }
