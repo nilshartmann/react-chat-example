@@ -1,7 +1,7 @@
 import React from "react";
 import { Avatar } from "../components";
 
-export default function AddMessage({ onMsgSend, userId }) {
+export default function AddMessage({ onMsgSend, user }) {
   const [msg, setMsg] = React.useState("");
 
   const onMsgChange = e => setMsg(e.target.value); // <== replaces setState({...})
@@ -23,14 +23,14 @@ export default function AddMessage({ onMsgSend, userId }) {
 
   const btnDisabled = msg.trim().length === 0;
 
-  const avatar = <Avatar userId={userId} />;
+  const avatar = React.useMemo(() => <Avatar userId={user.id} />, [user.id]);
 
   return (
     <div className="AddMessage">
       {avatar}
 
       <div className="Form">
-        <label htmlFor="AddMessageInput">Add Message</label>
+        <label htmlFor="AddMessageInput">Add your Message, {user.name}</label>
         <div className="InputWithButton">
           <input type="text" value={msg} onKeyPress={onMsgKeyPress} onChange={onMsgChange} />
           <button disabled={btnDisabled} onClick={onMsgSendClick}>

@@ -1,15 +1,27 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { useFormInput } from "./hooks";
 
 export function LoginDialog({ onLogin, onCancel, error }) {
-  const usernameFormInput = useFormInput("", onLogin);
+  const [username, setUsername] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
   function onLoginClick() {
-    onLogin(usernameFormInput.value);
+    onLogin(username, password);
   }
 
-  const loginDisabled = !usernameFormInput.value;
+  function onResetClick() {
+    setUsername("");
+    setPassword("");
+  }
+
+  function onEnterHandler(e) {
+    const keyCode = e.which || e.keyCode;
+    if (keyCode === 13) {
+      onLogin(username, password);
+    }
+  }
+
+  const loginDisabled = !(username && password);
 
   return ReactDOM.createPortal(
     <div className="Modal">
@@ -21,10 +33,15 @@ export function LoginDialog({ onLogin, onCancel, error }) {
           <div className="Form">
             <div className="FormGroup">
               <label>Username</label>
-              <input autoFocus type="text" {...usernameFormInput} />
+              <input autoFocus value={username} onChange={e => setUsername(e.target.value)} onKeyPress={onEnterHandler} />
+            </div>
+            <div className="FormGroup">
+              <label>Password</label>
+              <input type="password" value={password} onChange={e => setPassword(e.target.value)} onKeyPress={onEnterHandler} />
             </div>
             <div className="ButtonBar">
               <button onClick={onCancel}>Cancel</button>
+              <button onClick={onResetClick}>Reset</button>
               <button disabled={loginDisabled} onClick={onLoginClick}>
                 Login
               </button>

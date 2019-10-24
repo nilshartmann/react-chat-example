@@ -1,7 +1,7 @@
 {
   "name": "react-example-chat-app-frontend",
   "version": "0.0.1",
-  "description": "Frontend for React Chat Example App (React 16.7)",
+  "description": "Frontend for React Chat Example App (React 16.8)",
   "license": "ISC",
   "repository": "https://github.com/nilshartmann/react-chat-example",
   "scripts": {

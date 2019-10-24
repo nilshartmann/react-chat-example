@@ -84,12 +84,17 @@ function ChatroomPanel({ chatroomId }) {
 }
 
 function ChatroomPanelFooter({ onMsgSend }) {
-  const { user, openLoginDialog } = React.useContext(ChatContext);
+  const { user, openLoginDialog, logout } = React.useContext(ChatContext);
 
   return (
     <div className="ChatroomPanelFooter">
       {user.loggedIn ? (
-        <AddMessage userId={user.id} onMsgSend={onMsgSend} />
+        <>
+          <AddMessage user={user} onMsgSend={onMsgSend} />
+          <button className="small" onClick={logout}>
+            Logout
+          </button>
+        </>
       ) : (
         <Box>
           Please login to post messages{" "}

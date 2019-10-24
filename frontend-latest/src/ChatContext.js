@@ -42,6 +42,13 @@ function chatProviderReducer(state, action) {
       return { ...state, loginDialogVisible: false, loginError: "", user: action.user };
     case "login-failure":
       return { ...state, loginError: action.msg };
+    case "logout":
+      return {
+        ...state,
+        user: {
+          loggedIn: false
+        }
+      };
   }
 
   return state;
@@ -49,7 +56,7 @@ function chatProviderReducer(state, action) {
 
 function ChatProvider({ children }) {
   // https://reactjs.org/docs/hooks-reference.html#usereducer
-  const [state, dispatch] = React.useReducer(chatProviderReducer, emptyState());
+  const [state, dispatch] = React.useReducer(chatProviderReducer, emptyState);
 
   const connect = () => {
     ChatApi.connect(
@@ -75,6 +82,10 @@ function ChatProvider({ children }) {
     dispatch({
       type: "open-login-dialog"
     });
+  };
+
+  const logout = () => {
+    dispatch({ type: "logout" });
   };
 
   const closeLoginDialog = () => {
@@ -111,7 +122,8 @@ function ChatProvider({ children }) {
         // "actions"
         openLoginDialog,
         connect,
-        disconnect
+        disconnect,
+        logout
       }}
     >
       {loginDialogVisible && <LoginDialog error={loginError} onLogin={doLogin} onCancel={closeLoginDialog} />}
