@@ -1,5 +1,5 @@
 import React from "react";
-import { unstable_createResource } from "react-cache";
+// import { unstable_createResource } from "react-cache";
 
 import { demo_delayRandomImgLoad } from "../demo-help";
 
@@ -9,7 +9,7 @@ export function Box({ children, active }) {
 
 export function Avatar({ userId, ...attributes }) {
   const src = `/avatars/${userId}.svg`;
-  ImageResource.read(src);
+  // ImageResource.read(src);
   return <img className="Avatar" src={src} {...attributes} />;
 }
 
@@ -19,13 +19,13 @@ export function AvatarPlaceholder() {
 
 // credits: @jaredpalmer
 // https://github.com/jaredpalmer/react-conf-2018/blob/master/full-suspense/src/components/ArtistDetails.js
-const ImageResource = unstable_createResource(
-  source =>
-    new Promise(resolve =>
-      demo_delayRandomImgLoad(() => {
-        const img = new Image();
-        img.src = source;
-        img.onload = resolve;
-      })
-    )
-);
+// const ImageResource = unstable_createResource(
+//   source =>
+//     new Promise(resolve =>
+//       demo_delayRandomImgLoad(() => {
+//         const img = new Image();
+//         img.src = source;
+//         img.onload = resolve;
+//       })
+//     )
+// );

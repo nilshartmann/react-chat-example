@@ -5,13 +5,10 @@ import ErrorHandler from "./components/ErrorHandler";
 
 const mountNode = document.getElementById("mount");
 
-ReactDOM.render(
+ReactDOM.createRoot(mountNode).render(
   <React.StrictMode>
-    <React.unstable_ConcurrentMode>
-      <ErrorHandler>
-        <App />
-      </ErrorHandler>
-    </React.unstable_ConcurrentMode>
-  </React.StrictMode>,
-  mountNode
+    <ErrorHandler>
+      <App />
+    </ErrorHandler>
+  </React.StrictMode>
 );

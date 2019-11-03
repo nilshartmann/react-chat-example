@@ -1,21 +1,9 @@
 import React from "react";
-import { unstable_createResource } from "react-cache";
 import { Main, Sidebar, Spinner } from "../components";
-import { demo_delayFetch } from "../demo-help";
+import { loadDashboardData } from "../fakeApi";
 
-async function loadDataFromApi(path) {
-  const response = await fetch(`http://localhost:9000${path}`);
-  const json = await response.json();
-
-  console.log(`loadDataFromApi '${path}'`, json);
-  return json;
-}
-
-const LogsResource = unstable_createResource(() => demo_delayFetch(() => loadDataFromApi("/logs"), 350));
-const UsersResource = unstable_createResource(() => demo_delayFetch(() => loadDataFromApi("/users"), 350));
-
-function Logs() {
-  const logs = LogsResource.read();
+function Logs({ logsResource }) {
+  const logs = logsResource.read();
 
   return (
     <div>
@@ -31,8 +19,8 @@ function Logs() {
   );
 }
 
-function Users() {
-  const users = UsersResource.read();
+function Users({ usersResource }) {
+  const users = usersResource.read();
 
   return (
     <div>
@@ -57,18 +45,21 @@ function Users() {
   );
 }
 
-export default function DashboardPageWithEffects({ onClose }) {
+const dashboardData = loadDashboardData();
+
+export default function DashboardPageWithSuspense({ onClose }) {
   return (
     <>
       <Main>
         <h1>Admin Dashboard</h1>
-        {/* Show spinners individually */}
-        <React.Suspense fallback={<Spinner label="Loading Logs..." />}>
-          <Logs />
-        </React.Suspense>
-        <React.Suspense fallback={<Spinner label="Loading User..." />}>
-          <Users />
-        </React.Suspense>
+        <React.SuspenseList revealOrder="backwards">
+          <React.Suspense fallback={<Spinner label="Loading Logs..." />}>
+            <Logs logsResource={dashboardData.logs} />
+          </React.Suspense>
+          <React.Suspense fallback={<Spinner label="Loading User..." />}>
+            <Users usersResource={dashboardData.users} />
+          </React.Suspense>
+        </React.SuspenseList>
       </Main>
       <Sidebar>
         <button style={{ width: "100%" }} onClick={onClose}>

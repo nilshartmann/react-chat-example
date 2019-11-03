@@ -4,11 +4,14 @@ import { Main, Sidebar } from "../components";
 function useFetch(path, initialData) {
   const [data, setData] = React.useState(initialData);
 
-  React.useEffect(async () => {
-    const response = await fetch(`http://localhost:9000${path}`);
-    const json = await response.json();
+  React.useEffect(() => {
+    async function loadData() {
+      const response = await fetch(`http://localhost:9000${path}`);
+      const json = await response.json();
 
-    setData(json);
+      setData(json);
+    }
+    loadData();
   }, []);
 
   return data;

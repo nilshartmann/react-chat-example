@@ -126,7 +126,7 @@ button:hover {
 
 button:disabled {
   cursor: default;
-  color: #e59b8a;
+  color: var(--color-three);
 }
 
 button:disabled:hover {
@@ -200,6 +200,10 @@ input:hover {
 .Spinner .bounce2 {
   -webkit-animation-delay: -0.16s;
   animation-delay: -0.16s;
+}
+
+.Spinner.disabled > .bounce {
+  background-color: var(--color-three);
 }
 
 @-webkit-keyframes sk-bouncedelay {

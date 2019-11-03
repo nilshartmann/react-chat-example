@@ -1,8 +1,9 @@
 import React from "react";
 
-export function Spinner({ label }) {
+export function Spinner({ label, disabled, ...props }) {
+  const className = disabled ? "Spinner disabled" : "Spinner";
   return (
-    <div className="Spinner">
+    <div {...props} className={className}>
       {label && <h1>{label}</h1>}
       <div className="bounce bounce1" />
       <div className="bounce bounce2" />

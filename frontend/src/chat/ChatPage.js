@@ -2,6 +2,7 @@ import React from "react";
 import * as ChatApi from "../ChatApi";
 import { Main, Sidebar, Tabs, Box, Avatar } from "../components";
 import { ChatContext } from "../ChatContext";
+import Button from "../../../frontend-latest/src/components/Button";
 
 function Badge({ children }) {
   return <span className="Badge">{children}</span>;
@@ -219,13 +220,13 @@ export default class ChatPage extends React.Component {
             <UserProfile user={user} openLoginDialog={openLoginDialog} />
           </div>
           <div>
-            <button style={{ width: "100%" }} onClick={openDashboard}>
+            <Button style={{ width: "100%" }} onClick={openDashboard}>
               Dashboard
-            </button>
+            </Button>
 
-            <button style={{ width: "100%" }} onClick={onExitChat}>
+            <Button style={{ width: "100%" }} onClick={onExitChat}>
               Exit
-            </button>
+            </Button>
           </div>
         </Sidebar>
       </>

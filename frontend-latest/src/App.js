@@ -61,8 +61,8 @@ export default function App() {
           {visiblePage === "chat" && (
             <ChatPage
               onExitChat={exitChat}
-              openDashboardWithEffects={openDashboardWithEffects}
-              openDashboardWithSuspense={openDashboardWithSuspense}
+              onOpenDashboardWithEffects={openDashboardWithEffects}
+              onOpenDashboardWithSuspense={openDashboardWithSuspense}
             />
           )}
           {visiblePage === "thankyou" && <ThankYou reconnect={openChat} />}

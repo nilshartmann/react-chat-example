@@ -4,6 +4,7 @@ import { Main, Sidebar, Tabs, Box, Avatar } from "../components";
 import { ChatContext } from "../ChatContext";
 import { AvatarPlaceholder } from "../components/Basics";
 import AddMessage from "./AddMessage";
+import Button from "../components/Button";
 
 function Badge({ children }) {
   return <span className="Badge">{children}</span>;
@@ -124,8 +125,15 @@ function MessageContainer({ messages }) {
   );
 }
 
-export default function ChatPage({ onExitChat, openDashboardWithEffects, openDashboardWithSuspense }) {
+const SUSPENSE_CONFIG = {
+  timeoutMs: 3000
+};
+
+export default function ChatPage({ onExitChat, onOpenDashboardWithEffects, onOpenDashboardWithSuspense }) {
   const { user, chatrooms, openLoginDialog, connect, disconnect } = React.useContext(ChatContext);
+  // Concurrent Mode
+  const [openDashboardWithEffectsTransition, isOpenDashboardWithEffectsPending] = React.useTransition(SUSPENSE_CONFIG);
+  const [openDashboardWithSuspenseTransition, isOpenDashboardWithSuspensePending] = React.useTransition(SUSPENSE_CONFIG);
 
   React.useEffect(
     () => {
@@ -153,6 +161,14 @@ export default function ChatPage({ onExitChat, openDashboardWithEffects, openDas
     );
   }
 
+  function openOpenDashboardWithEffects() {
+    openDashboardWithEffectsTransition(() => onOpenDashboardWithEffects());
+  }
+
+  function openDashboardWithSuspense() {
+    openDashboardWithSuspenseTransition(() => onOpenDashboardWithSuspense());
+  }
+
   const tabLabels = chatrooms.map(cr => ({ label: cr.name }));
   const panels = chatrooms.map(cr => {
     return <ChatroomPanel chatroomId={cr.id} />;
@@ -168,11 +184,11 @@ export default function ChatPage({ onExitChat, openDashboardWithEffects, openDas
           <UserProfile user={user} openLoginDialog={openLoginDialog} />
         </div>
         <div>
-          <button style={{ width: "100%" }} onClick={openDashboardWithEffects}>
+          <Button isPending={isOpenDashboardWithEffectsPending} style={{ width: "100%" }} onClick={openOpenDashboardWithEffects}>
             Dashboard (Effects)
-          </button>
+          </Button>
 
-          <button style={{ width: "100%" }} onClick={openDashboardWithSuspense}>
+          <button isPending={isOpenDashboardWithSuspensePending} style={{ width: "100%" }} onClick={openDashboardWithSuspense}>
             Dashboard (Suspense)
           </button>
           <button style={{ width: "100%" }} onClick={onExitChat}>
