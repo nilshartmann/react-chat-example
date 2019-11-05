@@ -1,6 +1,36 @@
 import React from "react";
 import { Main, Sidebar, Spinner } from "../components";
-import { loadDashboardData } from "../fakeApi";
+
+function CPUs({ cpusResource }) {
+  const cpus = cpusResource.read();
+
+  return (
+    <div>
+      <h2>Server CPUs</h2>
+
+      <table className="CpuTable">
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Speed</th>
+            <th>User (ms)</th>
+            <th>Idle (ms)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cpus.map(c => (
+            <tr key={c.id}>
+              <td>{c.model}</td>
+              <td>{c.speed}</td>
+              <td>{c.times.user}</td>
+              <td>{c.times.idle}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
 
 function Logs({ logsResource }) {
   const logs = logsResource.read();
@@ -50,7 +80,8 @@ export default function DashboardPageWithSuspense({ onClose, dashboardData }) {
     <>
       <Main>
         <h1>Admin Dashboard</h1>
-        <React.SuspenseList revealOrder="backwards">
+        <CPUs cpusResource={dashboardData.cpus} />
+        <React.SuspenseList revealOrder="forwards">
           <React.Suspense fallback={<Spinner label="Loading Logs..." />}>
             <Logs logsResource={dashboardData.logs} />
           </React.Suspense>

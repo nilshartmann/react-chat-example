@@ -4,9 +4,11 @@ function loadDataFromApi(path) {
 
 export function loadDashboardData() {
   const logsPromise = wrapDelay("Loading Logs", () => loadDataFromApi("/logs"), 1350);
-  const usersPromise = wrapDelay("Loading Users", () => loadDataFromApi("/users"), 300);
+  const usersPromise = wrapDelay("Loading Users", () => loadDataFromApi("/users"), 500);
+  const cpusPromise = wrapDelay("Loading CPUs", () => loadDataFromApi("/cpus"), 300);
 
   return {
+    cpus: wrapPromise(cpusPromise),
     logs: wrapPromise(logsPromise),
     users: wrapPromise(usersPromise)
   };

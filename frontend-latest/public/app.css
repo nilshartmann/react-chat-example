@@ -447,3 +447,16 @@ input:hover {
   width: 2rem;
   margin-right: 1rem;
 }
+
+.CpuTable {
+  width: 100%;
+}
+
+.CpuTable .th {
+  font-weight: bold;
+}
+
+.CpuTable td,
+.CpuTable th {
+  padding: 0.5rem;
+}

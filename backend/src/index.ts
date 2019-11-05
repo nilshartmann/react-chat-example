@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import os from "os";
 import { createServer } from "http";
 import socketIo, { Socket } from "socket.io";
 
@@ -8,6 +9,8 @@ import { ClientManager } from "./ClientManager";
 import { ClientConnection } from "./ClientConnection";
 import { genid } from "./idgen";
 const PORT = 9000;
+
+console.log(process.env);
 
 export function runServer() {
   const { users, chatRooms } = createMockData();
@@ -110,6 +113,10 @@ export function runServer() {
 
     logBackendEvent(clientConnection, "Client registered");
     client.emit("clientRegister", initialPayload);
+  });
+
+  app.get("/cpus", (_, res) => {
+    res.send(os.cpus().map((c, ix) => ({ ...c, id: ix })));
   });
 
   app.get("/logs", (_, res) => {
