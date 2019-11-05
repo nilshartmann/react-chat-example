@@ -2,6 +2,7 @@ import React from "react";
 import { demo_delayInvocation } from "./demo-help";
 import { Layout, Spinner } from "./components";
 import { ChatProvider } from "./ChatContext";
+import { loadDashboardData } from "./fakeApi";
 
 // React.lazy() => Code Splitting mit Suspense [16.6]
 // https://reactjs.org/docs/code-splitting.html#reactlazy
@@ -35,8 +36,15 @@ function LoadingPage() {
 const initialPage = window.location.pathname === "/dashboard" ? "dashboardWithSuspense" : "chat";
 const pushLocation = newPath => window.history.pushState({}, null, `${newPath}${window.location.search}`);
 
+function initDashboardData() {
+  // TODO: why is this executed twice???
+  console.log("initialState...");
+  return initialPage === "dashboardWithSuspense" ? loadDashboardData() : null;
+}
+
 export default function App() {
   const [visiblePage, setVisiblePage] = React.useState(initialPage);
+  const [dashboardData, setDashboardData] = React.useState(initDashboardData);
 
   function openChat() {
     pushLocation("/chat");
@@ -51,6 +59,7 @@ export default function App() {
   }
   function openDashboardWithSuspense() {
     pushLocation("/dashboard");
+    setDashboardData(loadDashboardData());
     setVisiblePage("dashboardWithSuspense");
   }
 
@@ -67,7 +76,9 @@ export default function App() {
           )}
           {visiblePage === "thankyou" && <ThankYou reconnect={openChat} />}
           {visiblePage === "dashboardWithEffects" && <DashboardPageWithEffects onClose={openChat} />}
-          {visiblePage === "dashboardWithSuspense" && <DashboardPageWithSuspense onClose={openChat} />}
+          {visiblePage === "dashboardWithSuspense" && (
+            <DashboardPageWithSuspense onClose={openChat} dashboardData={dashboardData} />
+          )}
         </Layout>
       </ChatProvider>
     </React.Suspense>

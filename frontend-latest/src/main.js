@@ -6,9 +6,7 @@ import ErrorHandler from "./components/ErrorHandler";
 const mountNode = document.getElementById("mount");
 
 ReactDOM.createRoot(mountNode).render(
-  <React.StrictMode>
-    <ErrorHandler>
-      <App />
-    </ErrorHandler>
-  </React.StrictMode>
+  <ErrorHandler>
+    <App />
+  </ErrorHandler>
 );

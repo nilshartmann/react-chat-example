@@ -45,9 +45,7 @@ function Users({ usersResource }) {
   );
 }
 
-const dashboardData = loadDashboardData();
-
-export default function DashboardPageWithSuspense({ onClose }) {
+export default function DashboardPageWithSuspense({ onClose, dashboardData }) {
   return (
     <>
       <Main>

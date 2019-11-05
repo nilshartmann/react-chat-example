@@ -5,6 +5,7 @@ import { ChatContext } from "../ChatContext";
 import { AvatarPlaceholder } from "../components/Basics";
 import AddMessage from "./AddMessage";
 import Button from "../components/Button";
+import { loadDashboardData } from "../fakeApi";
 
 function Badge({ children }) {
   return <span className="Badge">{children}</span>;
@@ -133,7 +134,9 @@ export default function ChatPage({ onExitChat, onOpenDashboardWithEffects, onOpe
   const { user, chatrooms, openLoginDialog, connect, disconnect } = React.useContext(ChatContext);
   // Concurrent Mode
   const [openDashboardWithEffectsTransition, isOpenDashboardWithEffectsPending] = React.useTransition(SUSPENSE_CONFIG);
-  const [openDashboardWithSuspenseTransition, isOpenDashboardWithSuspensePending] = React.useTransition(SUSPENSE_CONFIG);
+  const [openDashboardWithSuspenseTransition, isOpenDashboardWithSuspensePending] = React.useTransition({
+    timeoutMs: 6000
+  });
 
   React.useEffect(
     () => {
@@ -188,9 +191,9 @@ export default function ChatPage({ onExitChat, onOpenDashboardWithEffects, onOpe
             Dashboard (Effects)
           </Button>
 
-          <button isPending={isOpenDashboardWithSuspensePending} style={{ width: "100%" }} onClick={openDashboardWithSuspense}>
+          <Button isPending={isOpenDashboardWithSuspensePending} style={{ width: "100%" }} onClick={openDashboardWithSuspense}>
             Dashboard (Suspense)
-          </button>
+          </Button>
           <button style={{ width: "100%" }} onClick={onExitChat}>
             Exit
           </button>
